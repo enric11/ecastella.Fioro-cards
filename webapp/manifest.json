@@ -1,0 +1,144 @@
+{
+	"_version": "1.7.0",
+	"start_url": "start.html",
+	"sap.app": {
+		"id": "com.cards.eCastella_Cards",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{app_title}}",
+		"description": "{{app_description}}",
+		"dataSources": {
+			"Northwind": {
+				"uri": "/Northwind/V2/Northwind/Northwind.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/Northwind/metadata.xml",
+					"annotations": [
+						"Local_annotation"
+					]
+				}
+			},
+			"Local_annotation": {
+				"type": "ODataAnnotation",
+				"uri": "annotations/Local_annotation.xml",
+				"settings": {
+					"localUri": "annotations/Local_annotation.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "OVP.smartovptemplate",
+			"version": "1.41.1"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "${sap.ui5.dist.version}",
+			"libs": {
+				"sap.ovp": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"@i18n": {
+				"preload": true,
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"Northwind": {
+				"dataSource": "Northwind",
+				"settings": {
+					"defaultCountMode": "Inline",
+					"useBatch": false
+				}
+			}
+		},
+		"extends": {
+			"extensions": {}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.ovp": {
+		"globalFilterModel": "Northwind",
+		"globalFilterEntityType": "",
+		"containerLayout": "fixed",
+		"enableLiveFilter": true,
+		"considerAnalyticalParameters": false,
+		"cards": {
+			"card00_Links": {
+				"template": "sap.ovp.cards.linklist",
+				"settings": {
+					"title": "{{card00_Links}}",
+					"subTitle": "{{card00_Links_sub}}",
+					"listFlavor": "standard",
+					"defaultSpan": {
+						"rows": 2,
+						"cols": 2
+					},
+					"staticContent": [
+						{
+							"title": "Create Purchase Order",
+							"imageUri": "sap-icon://accelerated",
+							"imageAltText": "{{card00_Links}}",
+							"semanticObject": "Action",
+							"action": "toappperssample",
+							"disableInCard": true
+						},
+						{
+							"title": "Create Supplier",
+							"imageUri": "sap-icon://accelerated",
+							"imageAltText": "{{card00_Links}}",
+							"semanticObject": "Action",
+							"action": "toappnavsample"
+						},
+						{
+							"title": "Create Contact",
+							"imageUri": "sap-icon://accelerated",
+							"imageAltText": "{{card00_Links}}",
+							"semanticObject": "Action",
+							"action": "toappnavsample"
+						}
+					]
+				}
+			},
+			"card01": {
+				"model": "Northwind",
+				"template": "sap.ovp.cards.list",
+				"settings": {
+					"title": "{{card01_title}}",
+					"entitySet": "Employees",
+					"addODataSelect": true,
+					"listType": "extended",
+					"listFlavor": "standard",
+					"sortBy": "HireDate",
+					"sortOrder": "ascending",
+					"annotationPath": "com.sap.vocabularies.UI.v1.LineItem#TopEmployees"
+				}
+			}
+		}
+	}
+}
